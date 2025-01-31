@@ -15,5 +15,3 @@ pegar.Bloco.ProximityPrompt.Triggered:Connect(function()
 character:PivotTo(CFrame.new(entrega.Bloco.Position))
 
 end)
-
-print("Oi")
