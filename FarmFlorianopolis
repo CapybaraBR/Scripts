@@ -1,0 +1,17 @@
+local player = game.Players.LocalPlayer
+local character = player.Character
+local trabaio = workspace["Floripa_workspace"].Empregos.Lixeiro
+local entrega = trabaio.Entregar
+local pegar = trabaio.Pegar
+
+entrega.Bloco.ProximityPrompt.Triggered:Connect(function()
+
+character:PivotTo(CFrame.new(pegar.Bloco.Position))
+
+ end)
+
+pegar.Bloco.ProximityPrompt.Triggered:Connect(function()
+
+character:PivotTo(CFrame.new(entrega.Bloco.Position))
+
+end)
