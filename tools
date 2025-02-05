@@ -32,6 +32,6 @@ for _, tool in workspace:GetChildren() do
 	task.wait()
 	LocateTool(tool)
 end
-workspace.ChildAdded:Connect(function(tool)
+workspace.DescendantAdded:Connect(function(tool)
 	LocateTool(tool)
 end)
