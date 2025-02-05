@@ -1,0 +1,37 @@
+local player = game:GetService("Players").LocalPlayer
+local camera = workspace.CurrentCamera
+local character = player.Character or player.CharacterAdded:Wait() character.Archivable = true
+
+local Tools = {}
+
+function LocateTool(tool)
+	if tool:IsA("Tool") and not table.find(Tools, tool) then
+
+		table.insert(Tools, tool)
+
+		local gui = Instance.new("BillboardGui", tool) gui.AlwaysOnTop = true
+		gui.Size = UDim2.fromOffset(100, 100) gui.StudsOffset = Vector3.new(0, 80, 0)
+		gui.ResetOnSpawn = false
+
+		local bgui = Instance.new("BillboardGui", tool) bgui.AlwaysOnTop = false
+		bgui.Size = UDim2.fromScale(1, 80) bgui.StudsOffset = Vector3.new(0, 40, 0)
+
+		local frame = Instance.new("Frame", bgui) frame.Size = UDim2.fromScale(1, 1)
+		frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255) frame.BorderSizePixel = 0
+
+		local uiconner = Instance.new("UICorner", frame)
+
+		local text = Instance.new("TextLabel", gui) text.Size = UDim2.fromScale(1, 1)
+		text.BackgroundTransparency = 1 text.TextScaled = true text.TextColor3 = Color3.fromRGB(255, 255, 255)
+		text.Text = tool.Name
+
+	end
+end
+
+for _, tool in workspace:GetChildren() do
+	task.wait()
+	LocateTool(tool)
+end
+workspace.ChildAdded:Connect(function(tool)
+	LocateTool(tool)
+end)
